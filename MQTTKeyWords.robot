@@ -23,3 +23,15 @@ I SUBSCRIBE to a topic and get message
     i publish an mqtt message
     ${messages} =  subscribe  ${MQTT.topic}  ${MQTT.qos}   5
     log to console  ${messages}
+
+I Publish multiple messages
+     connect  ${MQTT.hostname}
+     ${message1} =  create dictionary  topic=${MQTT.topic}	payload=message 1
+     ${message2} =  create dictionary  topic=${MQTT.topic}	payload=message 2
+     ${message3} =  create dictionary  topic=${MQTT.topic}	payload=message 3
+     @{msgs}  create list  ${message1}  ${message2}  ${message3}
+     PUBLISH MULTIPLE  msgs=@{msgs}  hostname=127.0.0.1
+
+
+
+
